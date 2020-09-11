@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "intendeciagrupoprimero": {
+      "hosting": {
+        "intendecia-grimed": [
+          "intendeciagrupoprimero"
+        ]
+      }
+    }
+  }
+}
