@@ -8,6 +8,30 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
+import { AuthService } from './auth/services/auth.service';
+
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { reducers,metaReducers } from './reducers/reducer';
+
+const NGRX_IMPORTS = [
+  ,
+  StoreModule.forRoot(reducers, { metaReducers }),
+  StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
+  EffectsModule.forRoot([]),
+  StoreDevtoolsModule.instrument({
+    name: 'intendeciaGr1med',
+    logOnly: environment.production
+  })
+];
+
+const FIRE_MODULES = [
+  AngularFireModule.initializeApp(environment.firebaseConfig),
+  AngularFireAuthModule,
+];
+
 
 @NgModule({
   declarations: [
@@ -18,10 +42,10 @@ import { environment } from 'src/environments/environment';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule,
+    ...FIRE_MODULES,
+    ...NGRX_IMPORTS
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
