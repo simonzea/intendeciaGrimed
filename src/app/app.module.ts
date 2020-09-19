@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth/services/auth.service';
@@ -17,7 +18,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers,metaReducers } from './reducers/reducer';
 
 const NGRX_IMPORTS = [
-  ,
   StoreModule.forRoot(reducers, { metaReducers }),
   StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
   EffectsModule.forRoot([]),
@@ -30,6 +30,7 @@ const NGRX_IMPORTS = [
 const FIRE_MODULES = [
   AngularFireModule.initializeApp(environment.firebaseConfig),
   AngularFireAuthModule,
+  AngularFirestoreModule
 ];
 
 

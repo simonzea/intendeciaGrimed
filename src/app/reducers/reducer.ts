@@ -11,10 +11,8 @@ import { RouterStateUrl } from '../shared/utils';
 import * as fromRouter from '@ngrx/router-store';
 import { storeFreeze } from 'ngrx-store-freeze';
 
-import * as fromAuth from '../auth/reducer/auth.reducer';
-import { RouterState } from '@angular/router';
+import * as fromAuth from '../auth/reducers/auth.reducer';
 import { environment } from 'src/environments/environment';
-import { FormatInputPathObject } from 'path';
 
 export interface State {
     auth: fromRouter.StateKeyOrSelector,
@@ -22,7 +20,7 @@ export interface State {
 }
 
 export const reducers: ActionReducerMap<State | any> = {
-    auth: fromAuth.AuthReducer,
+    auth: fromAuth.UserReducer,
     router: fromRouter.routerReducer
 }
 
