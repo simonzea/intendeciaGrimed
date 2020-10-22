@@ -25,6 +25,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { FirestoreDatePipe } from './firestore-date.pipe';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 
 const NGRX_IMPORTS = [
   StoreModule.forRoot(reducers, { metaReducers }),
@@ -48,7 +49,8 @@ const MATERIAL_MODULES = [
   MatTableModule,
   MatSortModule,
   MatToolbarModule,
-  MatIconModule
+  MatIconModule,
+  MatButtonModule
 ];
 
 
