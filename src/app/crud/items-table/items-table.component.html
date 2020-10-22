@@ -1,0 +1,57 @@
+<div class="mat-elevation-z8 mt-3">
+  <table mat-table matSort [dataSource]="dataSource">
+
+    <!-- nombre Column -->
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre objeto </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombreItem}} </td>
+    </ng-container>
+
+    <!-- deUso Column -->
+    <ng-container matColumnDef="deUso">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> De uSo </th>
+      <td mat-cell *matCellDef="let element"> {{element.deUso}} </td>
+    </ng-container>
+
+    <!-- estado Column -->
+    <ng-container matColumnDef="estado">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+      <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
+    </ng-container>
+
+    <!-- unidad Column -->
+    <ng-container matColumnDef="unidad">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Unidad </th>
+      <td mat-cell *matCellDef="let element"> {{element.unidad}} </td>
+    </ng-container>
+
+    <!-- cantidad Column -->
+    <ng-container matColumnDef="cantidad">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </th>
+      <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
+    </ng-container>
+
+    <!-- fechaPrestamo Column -->
+    <ng-container matColumnDef="fechaPrestamo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha del prestamo </th>
+      <td mat-cell *matCellDef="let element"> {{element.fechaPrestamo | firestoreDate}} </td>
+    </ng-container>
+
+    <!-- fechaEntrega Column -->
+    <ng-container matColumnDef="fechaEntrega">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de la entrega </th>
+      <td mat-cell *matCellDef="let element"> {{element.fechaEntrega | firestoreDate}} </td>
+    </ng-container>
+
+    <!-- notas Column -->
+    <ng-container matColumnDef="notas">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> notas </th>
+      <td mat-cell *matCellDef="let element"> {{element.notas}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+</div>

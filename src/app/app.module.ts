@@ -10,16 +10,25 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth/services/auth.service';
+import { CommonModule } from '@angular/common';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { reducers,metaReducers } from './reducers/reducer';
+import { reducers, metaReducers } from './reducers/reducer';
+import { ItemsTableComponent } from './crud/items-table/items-table.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { FirestoreDatePipe } from './firestore-date.pipe';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
 
 const NGRX_IMPORTS = [
   StoreModule.forRoot(reducers, { metaReducers }),
-  StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
+  StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
   EffectsModule.forRoot([]),
   StoreDevtoolsModule.instrument({
     name: 'intendeciaGr1med',
@@ -33,18 +42,31 @@ const FIRE_MODULES = [
   AngularFirestoreModule
 ];
 
+const MATERIAL_MODULES = [
+  BrowserAnimationsModule,
+  MatPaginatorModule,
+  MatTableModule,
+  MatSortModule,
+  MatToolbarModule,
+  MatIconModule
+];
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    ItemsTableComponent,
+    FirestoreDatePipe
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     ...FIRE_MODULES,
-    ...NGRX_IMPORTS
+    ...NGRX_IMPORTS,
+    ...MATERIAL_MODULES
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

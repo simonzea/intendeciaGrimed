@@ -8,16 +8,20 @@ import { AuthService } from '../../auth/services/auth.service';
 })
 
 export class AccessGuard implements CanActivate {
-  constructor(private authSvc: AuthService) {}
+  constructor(private authSvc: AuthService, private router: Router) { }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const requiresLogin = route.data.requiresLogin || false;
     if (requiresLogin) {
-      // Check that the user is logged in...
+      this.authSvc.getCurrentUser().then(result => {
+        if (!result) {
+          this.router.navigate(['login']);
+        } 
+      });
     }
+      return true;
     
-    return true;
   }
 
 }
