@@ -16,11 +16,11 @@ export class ItemsTableComponent implements OnInit, AfterViewInit {
   constructor(private firebaseService: ServiceFirebaseService) { }
 
   ngOnInit(): void {
-    this.firebaseService.getAllItems().subscribe(res =>{this.dataSource.data = res; console.log(res);} )
+    this.firebaseService.getAllItems().subscribe(res => { this.dataSource.data = res; console.log(res); })
   }
 
   displayedColumns: string[] = ['nombre', 'deUso', 'estado',
-    'unidad', 'cantidad', 'fechaPrestamo', 'fechaEntrega', 'notas'];
+    'unidad', 'cantidad', 'fechaPrestamo', 'fechaEntrega', 'notas', 'actions'];
 
   dataSource = new MatTableDataSource<ItemID>();
 
@@ -30,6 +30,16 @@ export class ItemsTableComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  onEdit(element) { }
+
+  onDelete(id: string) { 
+    this.firebaseService.deleteCustomer(id);
   }
 
 }

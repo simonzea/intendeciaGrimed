@@ -18,14 +18,21 @@ import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers, metaReducers } from './reducers/reducer';
 import { ItemsTableComponent } from './crud/items-table/items-table.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { FirestoreDatePipe } from './firestore-date.pipe';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BookingComponent } from './crud/booking/booking.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 const NGRX_IMPORTS = [
   StoreModule.forRoot(reducers, { metaReducers }),
@@ -50,7 +57,12 @@ const MATERIAL_MODULES = [
   MatSortModule,
   MatToolbarModule,
   MatIconModule,
-  MatButtonModule
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatSelectModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 ];
 
 
@@ -59,7 +71,8 @@ const MATERIAL_MODULES = [
     AppComponent,
     NavbarComponent,
     ItemsTableComponent,
-    FirestoreDatePipe
+    FirestoreDatePipe,
+    BookingComponent
   ],
   imports: [
     CommonModule,

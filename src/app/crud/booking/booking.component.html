@@ -1,0 +1,19 @@
+<div class="container">
+  <mat-form-field>
+    <mat-label>Unidad</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let unidad of unidades" [value]="unidad.value">
+        {{unidad.value}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="mt-3">
+    <input type="number" matNativeControl placeholder="Cantidad">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Fecha Prestamo</mat-label>
+    <input matInput [matDatepicker]="picker">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+</div>
