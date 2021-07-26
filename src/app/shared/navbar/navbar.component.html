@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <button mat-icon-button class="example-icon">
+  <button *ngIf="user$ | async as user" mat-icon-button [matMenuTriggerFor]="menu" class="example-icon">
     <mat-icon>menu</mat-icon>
   </button>
   <span>INTENDECIA GR1MED</span>
@@ -16,6 +16,17 @@
   </div>
   <span >Logo</span>
 </mat-toolbar>
+
+<mat-menu  #menu="matMenu">
+  <button mat-menu-item (click)="onRedirect('home')">
+    <mat-icon>home</mat-icon>
+    <span>Home</span>
+  </button>
+  <button mat-menu-item (click)="onRedirect('itemstable')">
+    <mat-icon>list</mat-icon>
+    <span>Intendecia</span>
+  </button>
+</mat-menu>
 
 <ng-template #login>
   <div class="nav-item" *ngIf="!user">

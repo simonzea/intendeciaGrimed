@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     this.store.dispatch(new userActions.GetUser());
     this.store.pipe(select(fromReducer.getAuth)).subscribe(user => {
       if(user?.uid) {
-        this.router.navigate(['/home'])
+        this.router.navigate(['/home']);
       }
     });
   }

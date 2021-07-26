@@ -15,7 +15,6 @@ import * as fromReducer from '../../reducers/reducer';
 
 export class NavbarComponent {
   public isLogged = false;
-  public user: any;
   public user$: Observable<any> = this.authSvc.afAuth.user;
   constructor(private authSvc: AuthService, private router: Router, private store: Store<fromReducer.State>) { }
 
@@ -27,6 +26,10 @@ export class NavbarComponent {
     } catch (err) {
       console.log(err);
     }
+  }
+
+  onRedirect(menu: string) {
+    this.router.navigate([`/${menu}`]);
   }
 
 }
