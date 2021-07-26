@@ -24,8 +24,8 @@ export class NavbarComponent {
     try {
       this.store.dispatch( new userActions.Logout())
       this.router.navigate(['/login'])
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
     }
   }
 

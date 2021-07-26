@@ -42,7 +42,7 @@ export class AuthError implements Action {
 
 export type All 
 = GetUser
-| Authenticated
+|Authenticated
 |NotAuthenticated
 |AuthError
 |Logout

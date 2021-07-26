@@ -12,15 +12,15 @@ export class AuthService {
     try {
       const result = await this.afAuth.signInWithEmailAndPassword(email, password);
       return result;
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
     };
   }
   async logout() {
     try {
       await this.afAuth.signOut();
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
     }
   }
 

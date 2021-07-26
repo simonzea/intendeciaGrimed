@@ -16,7 +16,7 @@ export class ItemsTableComponent implements OnInit, AfterViewInit {
   constructor(private firebaseService: ServiceFirebaseService) { }
 
   ngOnInit(): void {
-    this.firebaseService.getAllItems().subscribe(res => { this.dataSource.data = res; console.log(res); })
+    this.firebaseService.getAllItems().subscribe(res => this.dataSource.data = res)
   }
 
   displayedColumns: string[] = ['nombre', 'deUso', 'estado',

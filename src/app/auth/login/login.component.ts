@@ -25,15 +25,16 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(new userActions.GetUser());
-    this.user = this.store.pipe(select(fromReducer.getAuth))
+    this.store.pipe(select(fromReducer.getAuth)).subscribe(user => {
+      if(user?.uid) {
+        this.router.navigate(['/home'])
+      }
+    });
   }
 
   onLogin() {
     const { email, password } = this.loginForm.value;
       this.store.dispatch( new userActions.Login(this.loginForm.value))
-      if(this.user) {
-        this.router.navigate(['/home'])
-      }
   }
 
   onLogout() {
