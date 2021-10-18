@@ -4,6 +4,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ServiceFirebaseService } from '../service/service-firebase.service';
 import { ItemID } from '../item.interface';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { BookingComponent } from '../booking/booking.component'
 
 
 @Component({
@@ -13,7 +15,8 @@ import { ItemID } from '../item.interface';
 })
 export class ItemsTableComponent implements OnInit, AfterViewInit {
 
-  constructor(private firebaseService: ServiceFirebaseService) { }
+  constructor(private firebaseService: ServiceFirebaseService,
+              private matDialog: MatDialog) { }
 
   ngOnInit(): void {
     this.firebaseService.getAllItems().subscribe(res => this.dataSource.data = res)
@@ -36,10 +39,22 @@ export class ItemsTableComponent implements OnInit, AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  onEdit(element) { }
+  onEdit(element) {
+    this.openModal();
+    this.firebaseService.itemSelected = element;
+   }
 
   onDelete(id: string) { 
     this.firebaseService.deleteCustomer(id);
+  }
+
+  openModal(): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      title: 'Reservar'
+    };
+    dialogConfig.autoFocus = true;
+    this.matDialog.open(BookingComponent, dialogConfig)
   }
 
 }

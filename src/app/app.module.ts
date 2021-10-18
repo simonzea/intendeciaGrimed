@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
@@ -34,6 +34,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const NGRX_IMPORTS = [
   StoreModule.forRoot(reducers, { metaReducers }),
@@ -64,7 +65,8 @@ const MATERIAL_MODULES = [
   MatSelectModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatMenuModule
+  MatMenuModule,
+  MatDialogModule
 ];
 
 
@@ -81,6 +83,7 @@ const MATERIAL_MODULES = [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     ...FIRE_MODULES,
     ...NGRX_IMPORTS,
     ...MATERIAL_MODULES

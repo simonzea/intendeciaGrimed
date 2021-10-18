@@ -13,6 +13,18 @@ export class ServiceFirebaseService {
 
   private itemCollection: AngularFirestoreCollection<ItemID>;
   items: Observable<ItemID[]>;
+  public itemSelected = {
+    id: null,
+    cantidadReserva: 0,
+    nombreItem: '',
+    unidad: '',
+    deUso: false,
+    estado: '',
+    cantidad: 0,
+    notas: '',
+    fechaPrestamo: null,
+    fechaEntrega: null
+  };
 
   constructor(public fireService: AngularFirestore) {
     this.itemCollection = fireService.collection<ItemID>('Items');
