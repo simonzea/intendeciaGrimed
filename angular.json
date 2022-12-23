@@ -36,7 +36,7 @@
               "node_modules/@popperjs/core/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ],
-            "allowedCommonJsDependencies":[
+            "allowedCommonJsDependencies": [
               "firebase/app",
               "@firebase/app",
               "@firebase/firestore",
@@ -140,5 +140,8 @@
       }
     }
   },
-  "defaultProject": "intendecia-grimed"
+  "defaultProject": "intendecia-grimed",
+  "cli": {
+    "analytics": false
+  }
 }

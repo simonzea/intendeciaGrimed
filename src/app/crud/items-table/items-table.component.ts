@@ -22,8 +22,8 @@ export class ItemsTableComponent implements OnInit, AfterViewInit {
     this.firebaseService.getAllItems().subscribe(res => this.dataSource.data = res)
   }
 
-  displayedColumns: string[] = ['nombre', 'deUso', 'estado',
-    'unidad', 'cantidad', 'fechaPrestamo', 'fechaEntrega', 'notas', 'actions'];
+  displayedColumns: string[] = ['nombre', 'estado',
+     'cantidad', 'unidad', 'condicion', 'agrupacion', 'fechaPrestamo', 'fechaEntrega', 'notas', 'actions'];
 
   dataSource = new MatTableDataSource<ItemID>();
 

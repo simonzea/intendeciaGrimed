@@ -11,16 +11,16 @@
       <td mat-cell *matCellDef="let element"> {{element.nombreItem}} </td>
     </ng-container>
 
-    <!-- deUso Column -->
-    <ng-container matColumnDef="deUso">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> De uSo </th>
-      <td mat-cell *matCellDef="let element"> {{element.deUso}} </td>
-    </ng-container>
-
     <!-- estado Column -->
     <ng-container matColumnDef="estado">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
       <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
+    </ng-container>
+
+    <!-- cantidad Column -->
+    <ng-container matColumnDef="cantidad">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </th>
+      <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
     </ng-container>
 
     <!-- unidad Column -->
@@ -29,10 +29,16 @@
       <td mat-cell *matCellDef="let element"> {{element.unidad}} </td>
     </ng-container>
 
-    <!-- cantidad Column -->
-    <ng-container matColumnDef="cantidad">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </th>
-      <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
+    <!-- condicion Column -->
+    <ng-container matColumnDef="condicion">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Condicion </th>
+      <td mat-cell *matCellDef="let element"> {{element.condicion}} </td>
+    </ng-container>
+
+    <!-- agrupacion Column -->
+    <ng-container matColumnDef="agrupacion">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Agrupacion </th>
+      <td mat-cell *matCellDef="let element"> {{element.agrupacion}} </td>
     </ng-container>
 
     <!-- fechaPrestamo Column -->
@@ -57,8 +63,8 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> Acciones </th>
       <td mat-cell *matCellDef="let element">
-        <div class="row ml-1">
-          <button class="col" mat-flat-button color="accent" (click)="onEdit(element)">
+        <div  class="row ml-1">
+          <button *ngIf="element.estado !== 'RESERVADO'" class="col" mat-flat-button color="accent" (click)="onEdit(element)">
             Reservar
             <mat-icon>edit</mat-icon>
           </button>&nbsp;

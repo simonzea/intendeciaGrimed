@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { condicionDelItem, estadosDelItem } from '../item.interface';
 import { ServiceFirebaseService } from '../service/service-firebase.service'
 
 @Component({
@@ -15,7 +16,10 @@ export class RegisterdataComponent implements OnInit {
     nombreItem: [],
     unidad: [],
     deUso: [],
-    estado: [],
+    estado: [estadosDelItem.disponible],
+    correo: [],
+    condicion: [condicionDelItem.bueno],
+    agrupacion: [],
     cantidad: [],
     notas: [],
     fechaPrestamo: [],

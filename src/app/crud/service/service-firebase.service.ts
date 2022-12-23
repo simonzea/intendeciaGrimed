@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ItemI, ItemID } from '../item.interface';
+import { condicionDelItem, estadosDelItem, ItemI, ItemID } from '../item.interface';
 
 
 
@@ -19,7 +19,10 @@ export class ServiceFirebaseService {
     nombreItem: '',
     unidad: '',
     deUso: false,
-    estado: '',
+    condicion: condicionDelItem.bueno,
+    agrupacion: '',
+    correo: '',
+    estado: estadosDelItem.disponible,
     cantidad: 0,
     notas: '',
     fechaPrestamo: null,
