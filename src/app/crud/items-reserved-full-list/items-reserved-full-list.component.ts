@@ -6,6 +6,7 @@ import { ServiceFirebaseService } from '../service/service-firebase.service';
 import { columnsNames, ItemID } from '../item.interface';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { BookingComponent } from '../booking/booking.component'
+import { ReturningComponent } from '../returning/returning.component';
 
 
 @Component({
@@ -38,13 +39,18 @@ export class ItemsReservedTableFullListComponent implements OnInit, AfterViewIni
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  onEdit(element) {
+  onUndo(element) {
+    this.openModal();
+    this.firebaseService.itemSelected = element;
    }
 
-  onDelete(id: string) { 
-  }
-
   openModal(): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      title: 'Regresar item'
+    };
+    dialogConfig.autoFocus = true;
+    this.matDialog.open(ReturningComponent, dialogConfig)
   }
 
 }

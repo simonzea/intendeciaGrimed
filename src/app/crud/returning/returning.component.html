@@ -1,0 +1,11 @@
+<div class="container mt-2">
+  <mat-form-field appearance="fill">
+    <mat-label>Fecha Prestamo</mat-label>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="this.firebaseService.itemSelected.fechaEntrega">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <button mat-flat-button color="primary" (click)="onSaveReturning()">
+    <mat-icon>save</mat-icon>Save
+  </button>
+</div>

@@ -25,11 +25,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(new userActions.GetUser());
-    this.store.pipe(select(fromReducer.getAuth)).subscribe(user => {
-      if(user?.uid) {
-        this.router.navigate(['/home']);
-      }
-    });
+
   }
 
   onLogin() {

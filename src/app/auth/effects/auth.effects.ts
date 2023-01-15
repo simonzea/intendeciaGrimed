@@ -5,13 +5,14 @@ import { AuthService } from '../services/auth.service';
 import { Observable, of, from } from 'rxjs';
 import * as userActions from '../actions/auth.actions';
 import { map, switchMap, catchError, tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 export type Action = userActions.All;
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserEffects {
-    constructor(private actions: Actions, private authSvc: AuthService) { }
+    constructor(private actions: Actions, private authSvc: AuthService, private router:Router) { }
 
     @Effect()
     getUser: Observable<Action> = this.actions.pipe(
@@ -36,10 +37,10 @@ export class UserEffects {
         ofType(userActions.AuthActionTypes.LOGIN),
         map((action: userActions.Login) => action.payload),
         switchMap(payload => {
-            console.log(payload+"login")
             return from(this.authSvc.login(payload.email, payload.password));
         }),
         map(() => {
+            this.router.navigate(['/home']);
             return new userActions.GetUser();
         }),
         catchError(err => {

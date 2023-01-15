@@ -2,6 +2,7 @@ export interface ItemI {
     nombreItem: string;
     unidad: string;
     deUso: boolean;
+    dePrestamo: boolean;
     condicion: condicionDelItem;
     agrupacion: string;
     estado: estadosDelItem;

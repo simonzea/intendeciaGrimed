@@ -16,6 +16,7 @@ export class RegisterdataComponent implements OnInit {
     nombreItem: [],
     unidad: [],
     deUso: [],
+    dePrestamo: [],
     estado: [estadosDelItem.disponible],
     correo: [],
     condicion: [condicionDelItem.bueno],

@@ -26,6 +26,16 @@
           <input formControlName="cantidad" class="form-control" type="number"></label><br>
         <label>Notas :
           <input formControlName="notas" class="form-control"></label><br>
+        <label>Se puede prestar:
+            <div class="form-check form-check-inline">
+                <input formControlName="dePrestamo" name="dePrestamo" class="form-check-input" type="radio" id="inlineCheckbox1" [value]="true">
+                <label class="form-check-label" for="inlineCheckbox1">Si</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input formControlName="dePrestamo" name="dePrestamo" class="form-check-input" type="radio" id="inlineCheckbox2" [value]="false">
+                <label class="form-check-label" for="inlineCheckbox2">No</label>
+              </div>
+        </label><br>
         <button type="submit" class="btn btn-primary">Crear</button>
       </form>
     </div>

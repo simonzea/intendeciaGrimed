@@ -21,6 +21,7 @@ export class ServiceFirebaseService {
     nombreItem: '',
     unidad: '',
     deUso: false,
+    dePrestamo: true,
     condicion: condicionDelItem.bueno,
     agrupacion: '',
     correo: '',
@@ -52,7 +53,7 @@ export class ServiceFirebaseService {
   }
 
   getItemsReservedByEmail(correo: string) {
-    return this.fireService.collection(collectionItem, ref => ref.where(ItemProperties.correo, comparaciones.igual, correo)).valueChanges()
+    return this.fireService.collection(collectionItem, ref => ref.where(ItemProperties.correo, comparaciones.igual, correo).where(ItemProperties.estado, comparaciones.igual, estadosDelItem.reservado)).valueChanges()
   };
 
   getItemsReservedByStatus() {

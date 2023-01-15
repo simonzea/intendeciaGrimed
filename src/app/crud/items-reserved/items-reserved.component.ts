@@ -7,6 +7,8 @@ import { columnsNames, ItemID } from '../item.interface';
 import { select, Store } from '@ngrx/store';
 import { filter, switchMap, tap } from 'rxjs/operators';
 import * as fromReducer from '../../reducers/reducer';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ReturningComponent } from '../returning/returning.component';
 
 
 @Component({
@@ -17,7 +19,8 @@ import * as fromReducer from '../../reducers/reducer';
 export class ItemsReservedTableComponent implements OnInit, AfterViewInit {
 
   constructor(private firebaseService: ServiceFirebaseService,
-              private store: Store) { }
+              private store: Store,
+              private matDialog: MatDialog) { }
 
   ngOnInit(): void {
     this.store.pipe(
@@ -44,13 +47,19 @@ export class ItemsReservedTableComponent implements OnInit, AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  onEdit(element) {
+  onUndo(element) {
+    this.openModal();
+    this.firebaseService.itemSelected = element;
    }
 
-  onDelete(id: string) { 
-  }
 
   openModal(): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      title: 'Regresar item'
+    };
+    dialogConfig.autoFocus = true;
+    this.matDialog.open(ReturningComponent, dialogConfig)
   }
 
 }

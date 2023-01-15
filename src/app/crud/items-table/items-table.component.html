@@ -64,13 +64,17 @@
       <th mat-header-cell *matHeaderCellDef> Acciones </th>
       <td mat-cell *matCellDef="let element">
         <div  class="row ml-1">
-          <button *ngIf="element.estado !== 'RESERVADO'" class="col" mat-flat-button color="accent" (click)="onEdit(element)">
+          <button *ngIf="element.estado !== 'RESERVADO' && element.dePrestamo" class="col" mat-flat-button color="accent" (click)="onEdit(element)">
             Reservar
             <mat-icon>edit</mat-icon>
           </button>&nbsp;
           <button class="col" mat-flat-button color="warn" (click)="onDelete(element.id)">
             Eliminar
             <mat-icon>delete</mat-icon>
+          </button>&nbsp;
+          <button class="col" mat-flat-button color="primary" (click)="onAvilable(element)">
+            Disponibilidad
+            <mat-icon>check_circle_outline</mat-icon>
           </button>
         </div>
       </td>

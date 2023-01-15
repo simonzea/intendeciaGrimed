@@ -42,6 +42,7 @@ export class BookingComponent implements OnInit, OnDestroy{
   onSaveBooking(): void {
     let saveItem = this.setCorreo(this.firebaseService.itemSelected, this.correo);
     saveItem = this.setEstado(saveItem);
+    saveItem = this.setFechaEntrega(saveItem);
     this.firebaseService.editItem(saveItem);
     this.close();
   }
@@ -49,6 +50,12 @@ export class BookingComponent implements OnInit, OnDestroy{
   setCorreo(item: ItemID, correo: string): ItemID {
     let returnItem = cloneDeep(item);
     returnItem.correo = correo;
+    return returnItem;
+  }
+
+  setFechaEntrega(item: ItemID): ItemID {
+    let returnItem = cloneDeep(item);
+    returnItem.fechaEntrega = '';
     return returnItem;
   }
 

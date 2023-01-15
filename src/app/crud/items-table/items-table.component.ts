@@ -5,7 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ServiceFirebaseService } from '../service/service-firebase.service';
 import { columnsNames, ItemID } from '../item.interface';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { BookingComponent } from '../booking/booking.component'
+import { BookingComponent } from '../booking/booking.component';
+import { cloneDeep } from 'lodash';
 
 
 @Component({
@@ -45,6 +46,17 @@ export class ItemsTableComponent implements OnInit, AfterViewInit {
 
   onDelete(id: string) { 
     this.firebaseService.deleteCustomer(id);
+  }
+
+  onAvilable(element) {
+    let saveItem = this.setDePrestamo(element)
+    this.firebaseService.editItem(saveItem);
+  }
+
+  setDePrestamo(item: ItemID): ItemID {
+    let returnItem = cloneDeep(item);
+    returnItem.dePrestamo = !returnItem.dePrestamo;
+    return returnItem;
   }
 
   openModal(): void {
