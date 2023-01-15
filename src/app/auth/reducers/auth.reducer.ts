@@ -8,22 +8,26 @@ export interface State {
     displayName: string;
     loading?: boolean;
     error?: string;
+    correo?: string;
 }
 
 export function UserReducer(state: State, action: Action) {
+    console.log(action);
     switch (action.type) {
         case userActions.AuthActionTypes.GET_USER:
             return { ...state, loading: true }
+        case userActions.AuthActionTypes.SET_USER:
+            return { ...state, ...action.payload, loading: true }
         case userActions.AuthActionTypes.AUTHENTICATED:
             return { ...state, ...action.payload, loading: true }
         case userActions.AuthActionTypes.NOT_AUTHENTICATED:
-            return { ...state, loading: true }
+            return { }
         case userActions.AuthActionTypes.LOGIN:
             return { ...state, loading: true }
         case userActions.AuthActionTypes.AUTH_ERROR:
             return { ...state, ...action.payload, loading: false }
         case userActions.AuthActionTypes.LOGOUT:
-            return { ...state, loading: true }
+            return { }
     }
 }
 
