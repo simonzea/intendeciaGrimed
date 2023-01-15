@@ -11,11 +11,13 @@ export class AuthService {
   async login(email: string, password: string) {
     try {
       const result = await this.afAuth.signInWithEmailAndPassword(email, password);
+      console.log(email);
       return result;
     } catch (err) {
       console.log(err);
     };
   }
+  
   async logout() {
     try {
       await this.afAuth.signOut();

@@ -9,17 +9,17 @@ import { BookingComponent } from '../booking/booking.component'
 
 
 @Component({
-  selector: 'app-items-table',
-  templateUrl: './items-table.component.html',
-  styleUrls: ['./items-table.component.scss']
+  selector: 'app-items-table-reserved-full-list',
+  templateUrl: './items-reserved-full-list.component.html',
+  styleUrls: ['./items-reserved-full-list.component.scss']
 })
-export class ItemsTableComponent implements OnInit, AfterViewInit {
+export class ItemsReservedTableFullListComponent implements OnInit, AfterViewInit {
 
   constructor(private firebaseService: ServiceFirebaseService,
               private matDialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.firebaseService.getAllItems().subscribe(res => this.dataSource.data = res);
+    this.firebaseService.getItemsReservedByStatus().subscribe((res:ItemID[]) => this.dataSource.data = res)
   }
 
   displayedColumns: string[] = columnsNames;
@@ -39,21 +39,12 @@ export class ItemsTableComponent implements OnInit, AfterViewInit {
   }
 
   onEdit(element) {
-    this.openModal();
-    this.firebaseService.itemSelected = element;
    }
 
   onDelete(id: string) { 
-    this.firebaseService.deleteCustomer(id);
   }
 
   openModal(): void {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.data = {
-      title: 'Reservar'
-    };
-    dialogConfig.autoFocus = true;
-    this.matDialog.open(BookingComponent, dialogConfig)
   }
 
 }

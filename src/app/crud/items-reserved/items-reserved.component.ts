@@ -4,22 +4,28 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ServiceFirebaseService } from '../service/service-firebase.service';
 import { columnsNames, ItemID } from '../item.interface';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { BookingComponent } from '../booking/booking.component'
+import { select, Store } from '@ngrx/store';
+import { filter, switchMap, tap } from 'rxjs/operators';
+import * as fromReducer from '../../reducers/reducer';
 
 
 @Component({
-  selector: 'app-items-table',
-  templateUrl: './items-table.component.html',
-  styleUrls: ['./items-table.component.scss']
+  selector: 'app-items-table-reserved',
+  templateUrl: './items-reserved.component.html',
+  styleUrls: ['./items-reserved.component.scss']
 })
-export class ItemsTableComponent implements OnInit, AfterViewInit {
+export class ItemsReservedTableComponent implements OnInit, AfterViewInit {
 
   constructor(private firebaseService: ServiceFirebaseService,
-              private matDialog: MatDialog) { }
+              private store: Store) { }
 
   ngOnInit(): void {
-    this.firebaseService.getAllItems().subscribe(res => this.dataSource.data = res);
+    this.store.pipe(
+      select(fromReducer.getAuth),
+      filter(user => !!user?.uid),
+      switchMap(user => this.firebaseService.getItemsReservedByEmail(user.correo)),
+      tap((res:ItemID[]) => this.dataSource.data = res)
+    ).subscribe();
   }
 
   displayedColumns: string[] = columnsNames;
@@ -39,21 +45,12 @@ export class ItemsTableComponent implements OnInit, AfterViewInit {
   }
 
   onEdit(element) {
-    this.openModal();
-    this.firebaseService.itemSelected = element;
    }
 
   onDelete(id: string) { 
-    this.firebaseService.deleteCustomer(id);
   }
 
   openModal(): void {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.data = {
-      title: 'Reservar'
-    };
-    dialogConfig.autoFocus = true;
-    this.matDialog.open(BookingComponent, dialogConfig)
   }
 
 }

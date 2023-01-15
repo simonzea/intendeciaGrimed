@@ -3,8 +3,9 @@ export interface IUser {
     displayName:string;
     loading?: boolean;
     error?:string;
+    correo: string;
 }
 
 export class User implements IUser {
-    constructor(public uid: string, public displayName: string){}
+    constructor(public uid: string, public displayName: string, public correo){}
 }

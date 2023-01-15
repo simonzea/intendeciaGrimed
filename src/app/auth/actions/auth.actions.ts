@@ -3,6 +3,7 @@ import { User } from '../models/user';
 
 export enum AuthActionTypes {
     GET_USER = '[Auth] Get User',
+    SET_USER = '[Auth] Set User',
     AUTHENTICATED = '[Auth] Authenticate',
     NOT_AUTHENTICATED = '[Auth] not Authenticate',
     LOGIN = '[Auth] Login',
@@ -12,6 +13,11 @@ export enum AuthActionTypes {
 
 export class GetUser implements Action {
     readonly type = AuthActionTypes.GET_USER;
+    constructor(public payload?: any) { }
+}
+
+export class SetUser implements Action {
+    readonly type = AuthActionTypes.SET_USER;
     constructor(public payload?: any) { }
 }
 
@@ -42,6 +48,7 @@ export class AuthError implements Action {
 
 export type All 
 = GetUser
+|SetUser
 |Authenticated
 |NotAuthenticated
 |AuthError

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AccessGuard } from '../app/shared/guards/acces.guard';
+import { ItemsReservedTableFullListComponent } from './crud/items-reserved-full-list/items-reserved-full-list.component';
+import { ItemsReservedTableComponent } from './crud/items-reserved/items-reserved.component';
 import { ItemsTableComponent } from './crud/items-table/items-table.component';
 
 
@@ -17,6 +19,14 @@ const routes: Routes = [
   },
   {
     path: 'itemstable', component: ItemsTableComponent,
+    data: { requiresLogin: true }, canActivate: [AccessGuard]
+  },
+  {
+    path: 'itemsreserved', component: ItemsReservedTableComponent,
+    data: { requiresLogin: true }, canActivate: [AccessGuard]
+  },
+  {
+    path: 'itemsreservedfull', component: ItemsReservedTableFullListComponent,
     data: { requiresLogin: true }, canActivate: [AccessGuard]
   }
 ];

@@ -17,7 +17,7 @@ import { UserEffects } from '../effects/auth.effects';
     LoginRoutingModule,
     ReactiveFormsModule,
     StoreModule.forFeature('login', fromAuthReducer.UserReducer),
-    EffectsModule.forFeature([UserEffects])
+    EffectsModule.forFeature([UserEffects]),
   ]
 })
 export class LoginModule { }

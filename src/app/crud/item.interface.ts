@@ -25,4 +25,18 @@ export enum condicionDelItem {
     malo = 'MALO'
   }
 
+  export enum comparaciones {
+    igual = '=='
+  }
+
+  export enum ItemProperties {
+    correo = 'correo',
+    estado = 'estado'
+  }
+
+export const collectionItem = 'Items';
+
 export interface ItemID extends ItemI { id : string};
+
+export const columnsNames = ['nombre', 'estado',
+'cantidad', 'unidad', 'condicion', 'agrupacion', 'fechaPrestamo', 'fechaEntrega', 'notas', 'actions']

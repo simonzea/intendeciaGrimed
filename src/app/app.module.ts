@@ -18,6 +18,8 @@ import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers, metaReducers } from './reducers/reducer';
 import { ItemsTableComponent } from './crud/items-table/items-table.component';
+import { ItemsReservedTableComponent } from './crud/items-reserved/items-reserved.component';
+import { ItemsReservedTableFullListComponent } from './crud/items-reserved-full-list/items-reserved-full-list.component'
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -35,11 +37,12 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
+import { UserEffects } from './auth/effects/auth.effects';
 
 const NGRX_IMPORTS = [
   StoreModule.forRoot(reducers, { metaReducers }),
   StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
-  EffectsModule.forRoot([]),
+  EffectsModule.forRoot([UserEffects]),
   StoreDevtoolsModule.instrument({
     name: 'intendeciaGr1med',
     logOnly: environment.production
@@ -75,6 +78,8 @@ const MATERIAL_MODULES = [
     AppComponent,
     NavbarComponent,
     ItemsTableComponent,
+    ItemsReservedTableComponent,
+    ItemsReservedTableFullListComponent,
     FirestoreDatePipe,
     BookingComponent
   ],

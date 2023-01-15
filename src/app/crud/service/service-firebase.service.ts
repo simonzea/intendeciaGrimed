@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { select, Store } from '@ngrx/store';
+import { Observable, from } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { condicionDelItem, estadosDelItem, ItemI, ItemID } from '../item.interface';
+import { collectionItem, comparaciones, condicionDelItem, estadosDelItem, ItemI, ItemID, ItemProperties } from '../item.interface';
+import * as fromReducer from '../../reducers/reducer';
 
 
 
@@ -28,9 +30,10 @@ export class ServiceFirebaseService {
     fechaPrestamo: null,
     fechaEntrega: null
   };
+  correo: string;
 
-  constructor(public fireService: AngularFirestore) {
-    this.itemCollection = fireService.collection<ItemID>('Items');
+  constructor(public fireService: AngularFirestore, private store: Store<fromReducer.State>) {
+    this.itemCollection = fireService.collection<ItemID>(collectionItem);
     this.items = this.itemCollection.snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as ItemID;
@@ -41,12 +44,20 @@ export class ServiceFirebaseService {
   }
 
   createItem(item) {
-    return this.fireService.collection('Items').add(item)
+    return this.itemCollection.add(item)
   }
 
   getAllItems() {
     return this.items;
   }
+
+  getItemsReservedByEmail(correo: string) {
+    return this.fireService.collection(collectionItem, ref => ref.where(ItemProperties.correo, comparaciones.igual, correo)).valueChanges()
+  };
+
+  getItemsReservedByStatus() {
+    return this.fireService.collection(collectionItem, ref => ref.where(ItemProperties.estado, comparaciones.igual, estadosDelItem.reservado)).valueChanges()
+  };
 
   editItem(item: ItemID) {
     let id = item.id;

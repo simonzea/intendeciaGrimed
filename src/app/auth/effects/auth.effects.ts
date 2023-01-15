@@ -4,7 +4,7 @@ import { User } from '../models/user';
 import { AuthService } from '../services/auth.service';
 import { Observable, of, from } from 'rxjs';
 import * as userActions from '../actions/auth.actions';
-import { map, switchMap, catchError } from 'rxjs/operators';
+import { map, switchMap, catchError, tap } from 'rxjs/operators';
 export type Action = userActions.All;
 
 @Injectable({
@@ -20,7 +20,8 @@ export class UserEffects {
         switchMap(payload => this.authSvc.getCurrentUser()),
         map(authData => {
             if (authData) {
-                const user = new User(authData.uid, authData.displayName);
+                console.log(authData);
+                const user = new User(authData.uid, authData.displayName, authData.email);
                 return new userActions.Authenticated(user);
             } else {
                 return new userActions.NotAuthenticated();
@@ -31,9 +32,11 @@ export class UserEffects {
 
     @Effect()
     login: Observable<Action> = this.actions.pipe(
+        tap(x=> console.log(x)),
         ofType(userActions.AuthActionTypes.LOGIN),
         map((action: userActions.Login) => action.payload),
         switchMap(payload => {
+            console.log(payload+"login")
             return from(this.authSvc.login(payload.email, payload.password));
         }),
         map(() => {
@@ -46,9 +49,12 @@ export class UserEffects {
 
     @Effect()
     logout: Observable<Action> = this.actions.pipe(
+        tap(x=> console.log(x)),
         ofType(userActions.AuthActionTypes.LOGOUT),
+        tap(x=> console.log(x)),
         map((action: userActions.Logout) => action.payload),
         switchMap(payload => {
+            console.log(payload+"logout")
             return of(this.authSvc.logout());
         }),
         map(() => {
