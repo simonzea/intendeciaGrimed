@@ -11,7 +11,7 @@ import { Store } from '@ngrx/store';
   providedIn: 'root'
 })
 
-export class AccessGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
   constructor(private authSvc: AuthService, private router: Router, private store: Store<fromReducer.State>) { }
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -25,8 +25,10 @@ export class AccessGuard implements CanActivate {
         }
         // encontrar un mejor lugar para esto mirar mejor ngrx
         const isAdmin = admins.includes(result.email);
-        const user = new User(result.uid, result.displayName, result.email, isAdmin);
-       this.store.dispatch(new userActions.SetUser(user));
+        if(!isAdmin) {
+          this.router.navigate(['home']);
+          return false;
+        }
       });
     }
       return true;

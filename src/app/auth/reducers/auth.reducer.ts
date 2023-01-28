@@ -9,6 +9,7 @@ export interface State {
     loading?: boolean;
     error?: string;
     correo?: string;
+    isAdmin?: boolean;
 }
 
 export function UserReducer(state: State, action: Action) {

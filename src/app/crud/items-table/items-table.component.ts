@@ -7,6 +7,10 @@ import { columnsNames, ItemID } from '../item.interface';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { BookingComponent } from '../booking/booking.component';
 import { cloneDeep } from 'lodash';
+import { select, Store } from '@ngrx/store';
+import { filter, map } from 'rxjs/operators';
+import * as fromReducer from '../../reducers/reducer';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -15,12 +19,19 @@ import { cloneDeep } from 'lodash';
   styleUrls: ['./items-table.component.scss']
 })
 export class ItemsTableComponent implements OnInit, AfterViewInit {
+  public isAdmin$: Observable<boolean> ;
 
   constructor(private firebaseService: ServiceFirebaseService,
-              private matDialog: MatDialog) { }
+              private matDialog: MatDialog,
+              private store: Store) { }
 
   ngOnInit(): void {
     this.firebaseService.getAllItems().subscribe(res => this.dataSource.data = res);
+    this.isAdmin$ = this.store.pipe(
+        select(fromReducer.getAuth),
+        filter(user => !!user?.uid),
+        map(user => user?.isAdmin)
+      );
   }
 
   displayedColumns: string[] = columnsNames;

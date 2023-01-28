@@ -30,6 +30,14 @@
     <mat-icon>event_note</mat-icon>
     <span>Reservado</span>
   </button>
+  <button *ngIf="isAdmin$ | async" mat-menu-item (click)="onRedirect('itemsreservedfull')">
+    <mat-icon>event_note</mat-icon>
+    <span>Todo lo reservado</span>
+  </button>
+  <button *ngIf="isAdmin$ | async" mat-menu-item (click)="onRedirect('registerdata')">
+    <mat-icon>event_note</mat-icon>
+    <span>Agregar Item</span>
+  </button>
 </mat-menu>
 
 <ng-template #login>

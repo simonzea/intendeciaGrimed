@@ -68,11 +68,11 @@
             Reservar
             <mat-icon>edit</mat-icon>
           </button>&nbsp;
-          <button class="col" mat-flat-button color="warn" (click)="onDelete(element.id)">
+          <button *ngIf="isAdmin$ | async" class="col" mat-flat-button color="warn" (click)="onDelete(element.id)">
             Eliminar
             <mat-icon>delete</mat-icon>
           </button>&nbsp;
-          <button class="col" mat-flat-button color="primary" (click)="onAvilable(element)">
+          <button *ngIf="isAdmin$ | async" class="col" mat-flat-button color="primary" (click)="onAvilable(element)">
             Disponibilidad
             <mat-icon>check_circle_outline</mat-icon>
           </button>
