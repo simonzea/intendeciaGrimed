@@ -53,13 +53,19 @@
       <td mat-cell *matCellDef="let element"> {{element.fechaEntrega | firestoreDate}} </td>
     </ng-container>
 
+    <!-- correo Column -->
+    <ng-container matColumnDef="correo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Correo que lo presto </th>
+      <td mat-cell *matCellDef="let element"> {{element.correo}} </td>
+    </ng-container>
+
     <!-- notas Column -->
     <ng-container matColumnDef="notas">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> notas </th>
       <td mat-cell *matCellDef="let element"> {{element.notas}} </td>
     </ng-container>
 
-    <!-- notas Column -->
+    <!-- Acciones Column -->
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> Acciones </th>
       <td mat-cell *matCellDef="let element">

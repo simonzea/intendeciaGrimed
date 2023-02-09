@@ -15,16 +15,21 @@ export class RegisterdataComponent implements OnInit {
   itemsCreateForm = this.fb.group({
     nombreItem: [],
     unidad: [],
+    unidadUltima: [],
     deUso: [],
     dePrestamo: [],
     estado: [estadosDelItem.disponible],
     correo: [],
+    correoUltimo: [],
     condicion: [condicionDelItem.bueno],
     agrupacion: [],
     cantidad: [],
     notas: [],
+    notasUltima: [],
     fechaPrestamo: [],
     fechaEntrega: [],
+    fechaPrestamoUltima: [],
+    fechaEntregaUltima: []
   });
 
 

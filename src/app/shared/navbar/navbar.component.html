@@ -6,7 +6,7 @@
   <span class="example-spacer"></span>
   <div class="container-fluid">
     <div class="row" *ngIf="user$ | async as user else login">
-      <div class="col-sm-1 ml-auto" *ngIf="user">
+      <div class="col-m-1 ml-auto" *ngIf="user">
         <span class="nav-link">{{user?.email}}</span>
       </div>
       <div class="col-sm-1 ml-5" *ngIf="user">

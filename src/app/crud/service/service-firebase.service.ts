@@ -20,16 +20,21 @@ export class ServiceFirebaseService {
     cantidadReserva: 0,
     nombreItem: '',
     unidad: '',
+    unidadUltima: '',
     deUso: false,
     dePrestamo: true,
     condicion: condicionDelItem.bueno,
     agrupacion: '',
     correo: '',
+    correoUltimo: '',
     estado: estadosDelItem.disponible,
     cantidad: 0,
     notas: '',
+    notasUltima: '',
     fechaPrestamo: null,
-    fechaEntrega: null
+    fechaEntrega: null,
+    fechaPrestamoUltima: null,
+    fechaEntregaUltima: null
   };
   correo: string;
 

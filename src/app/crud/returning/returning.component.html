@@ -5,6 +5,8 @@
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
+  <label>Notas :
+    <input class="form-control" [(ngModel)]="this.firebaseService.itemSelected.notas"></label><br>
   <button mat-flat-button color="primary" (click)="onSaveReturning()">
     <mat-icon>save</mat-icon>Save
   </button>

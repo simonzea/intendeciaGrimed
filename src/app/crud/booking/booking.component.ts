@@ -19,6 +19,7 @@ export class BookingComponent implements OnInit, OnDestroy{
     { value: 'Clan' }, { value: 'Consejo' }, { value: 'Jefatura Grupo' }];
   correo: string;
   destroy$: Subject<boolean> = new Subject<boolean>();
+  lastItem: ItemID;
 
   constructor(public firebaseService: ServiceFirebaseService,
               public matDialogRef: MatDialogRef<BookingComponent>,
@@ -27,6 +28,7 @@ export class BookingComponent implements OnInit, OnDestroy{
   
 
   ngOnInit(): void {
+    this.lastItem = cloneDeep(this.firebaseService.itemSelected);
     this.afAuth.authState.pipe(
       first(),
       tap(auth => this.correo = auth.email),
@@ -40,11 +42,59 @@ export class BookingComponent implements OnInit, OnDestroy{
   }
 
   onSaveBooking(): void {
-    let saveItem = this.setCorreo(this.firebaseService.itemSelected, this.correo);
-    saveItem = this.setEstado(saveItem);
-    saveItem = this.setFechaEntrega(saveItem);
+    let saveItem = this.setUltimosReservados(this.lastItem);
+    saveItem = this.convinarItems(this.firebaseService.itemSelected, saveItem)
+    saveItem = this.setCorreo(saveItem, this.correo);
+    saveItem = this.setEstadoReservado(saveItem);
+    saveItem = this.setFechaEntregaEmpty(saveItem);
     this.firebaseService.editItem(saveItem);
     this.close();
+  }
+
+  convinarItems(newitem: ItemID, oldItem: ItemID): ItemID{
+    return{...oldItem,
+    unidad: newitem.unidad,
+    cantidad: newitem.cantidad,
+    fechaEntrega: newitem.fechaPrestamo}
+  }
+
+  setUltimosReservados(item: ItemID): ItemID {
+    let newItem = this.setCorreoUltimo(item, item.correo);
+    newItem = this.setUnidadUltima(newItem, item.unidad);
+    newItem = this.setFechaEntregaUltima(newItem, item.fechaEntrega);
+    newItem = this.setFechaPrestamoUltima(newItem, item.fechaPrestamo);
+    newItem = this.setNotaUltima(newItem, item.notas);
+    return newItem;
+  }
+
+  setCorreoUltimo(item: ItemID, correo: string): ItemID {
+    let returnItem = cloneDeep(item);
+    returnItem.correoUltimo = correo;
+    return returnItem;
+  }
+
+  setNotaUltima(item: ItemID, nota: string): ItemID {
+    let returnItem = cloneDeep(item);
+    returnItem.notasUltima = nota;
+    return returnItem;
+  }
+
+  setUnidadUltima(item: ItemID, unidad: string): ItemID {
+    let returnItem = cloneDeep(item);
+    returnItem.unidadUltima = unidad;
+    return returnItem;
+  }
+
+  setFechaEntregaUltima(item: ItemID, fechaEntrega: number): ItemID {
+    let returnItem = cloneDeep(item);
+    returnItem.fechaEntregaUltima = fechaEntrega;
+    return returnItem;
+  }
+
+  setFechaPrestamoUltima(item: ItemID, fechaPrestamo: number): ItemID {
+    let returnItem = cloneDeep(item);
+    returnItem.fechaPrestamoUltima = fechaPrestamo;
+    return returnItem;
   }
 
   setCorreo(item: ItemID, correo: string): ItemID {
@@ -53,13 +103,13 @@ export class BookingComponent implements OnInit, OnDestroy{
     return returnItem;
   }
 
-  setFechaEntrega(item: ItemID): ItemID {
+  setFechaEntregaEmpty(item: ItemID): ItemID {
     let returnItem = cloneDeep(item);
     returnItem.fechaEntrega = '';
     return returnItem;
   }
 
-  setEstado(item: ItemID): ItemID {
+  setEstadoReservado(item: ItemID): ItemID {
     let returnItem = cloneDeep(item);
     returnItem.estado = estadosDelItem.reservado;
     return returnItem;
