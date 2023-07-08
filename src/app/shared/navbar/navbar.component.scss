@@ -1,0 +1,46 @@
+$accent-color: #537d90;
+
+img {
+    height: 100px;
+}
+
+.mat-toolbar-single-row {
+    height: 102px;
+}
+
+.grimed {
+    color: $accent-color;
+    font-size: 28px;
+}
+
+.nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.data-menu {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.mat-stroked-button {
+    border-color:black
+}
+
+.container-image {
+    margin: 1px 100px
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 100%;
+}
+
+.container-button {
+    margin: 1px 100px 1px 30px;
+    width: 40px;
+}

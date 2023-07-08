@@ -1,20 +1,27 @@
 <mat-toolbar color="primary">
-  <button *ngIf="user$ | async as user" mat-icon-button [matMenuTriggerFor]="menu" class="example-icon">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>INTENDECIA GR1MED</span>
-  <span class="example-spacer"></span>
-  <div class="container-fluid">
+  <div class="container">
+  <div class="container-image">
+    <img src="assets/recurso-1.svg">
+  </div>
+  <div class="container-title">
+    <span class="grimed">GR1MED</span>
+  </div>
+  <div class="container-fluid data-menu">
     <div class="row" *ngIf="user$ | async as user else login">
-      <div class="col-m-1 ml-auto" *ngIf="user">
+      <div  *ngIf="user">
         <span class="nav-link">{{user?.email}}</span>
       </div>
-      <div class="col-sm-1 ml-5" *ngIf="user">
+      <div  *ngIf="user">
         <span class="nav-link" (click)="onLogout()">Log out</span>
       </div>
     </div>
+    <div class="container-button">
+      <button *ngIf="user$ | async as user" mat-stroked-button [matMenuTriggerFor]="menu" class="example-icon">
+        Opciones
+      </button>
+    </div>  
   </div>
-  <span >Logo</span>
+</div>
 </mat-toolbar>
 
 <mat-menu  #menu="matMenu">

@@ -1,4 +1,19 @@
 
+
+/* import the Bootstrap */
+@import "bootstrap";
+
+/* ------- customize primary button color -------- */   
+$primary-color: #ffffff;
+$accent-color: #537d90;
+
+.btn-primary {
+    @include button-variant($accent-color, darken($accent-color, 7.5%), darken($accent-color, 10%), lighten($accent-color,5%), lighten($accent-color, 10%), darken($accent-color,30%));
+}
+
+.btn-outline-primary {
+    @include button-outline-variant($accent-color, #222222, lighten($accent-color,5%), $accent-color);
+}
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
@@ -8,30 +23,28 @@
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 @include mat-core();
+@import 'mat-gen-palette.scss';
 
+
+
+ 
+$primary-palette: createPalette($primary-color);
+$accent-palette: createPalette($accent-color);
+ 
+$warn: mat-palette($mat-red);
+$primary: mat-palette($primary-palette);
+$accent: mat-palette($accent-palette);
+
+$theme: mat-dark-theme($primary, $accent, $warn);
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$intendecia-grimed-primary: mat-palette($mat-indigo);
-$intendecia-grimed-accent: mat-palette($mat-pink, A200, A100, A400);
 
-// The warn palette is optional (defaults to red).
-$intendecia-grimed-warn: mat-palette($mat-red);
-
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$intendecia-grimed-theme: mat-light-theme((
-  color: (
-    primary: $intendecia-grimed-primary,
-    accent: $intendecia-grimed-accent,
-    warn: $intendecia-grimed-warn,
-  )
-));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($intendecia-grimed-theme);
+@include angular-material-theme($theme);
 
 /* You can add global styles to this file, and also import other style files */
 
@@ -57,8 +70,8 @@ pre {
 
 #home .navbar,
 #help .navbar {
-  background: #349aed;
-  background: linear-gradient(145deg, #349aed 50%, #34d8ed 100%);
+  background: #7f623e;
+  background: linear-gradient(145deg, #7f623e 50%, #cfac82 100%);
   transition: box-shadow 200ms ease-in
 }
 
@@ -71,7 +84,7 @@ pre {
 #home .navbar-brand .nav-link,
 #help .navbar-brand .nav-link {
   display: inline-block;
-  margin-right: -30px
+  margin-right: -30px;
 }
 
 #home .navbar-brand img,
@@ -203,8 +216,8 @@ pre {
 
 .splash {
   padding: 12em 0 6em;
-  background: #349aed;
-  background: linear-gradient(145deg, #349aed 50%, #34d8ed 100%);
+  background: #7f623e;
+  background: linear-gradient(145deg, #7f623e 50%, #cfac82 100%);
   color: #fff;
   text-align: center
 }
@@ -247,7 +260,7 @@ pre {
   display: inline-block;
   padding: 0.8em;
   font-size: 2rem;
-  background: #349aed;
+  background: #7f623e;
   background: linear-gradient(145deg, #3b9cea 50%, #3db8eb 100%);
   border-radius: 50%;
   color: rgba(0, 0, 0, 0.5)

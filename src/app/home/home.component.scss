@@ -1,0 +1,81 @@
+$accent-color: #537d90;
+.home {
+    margin: 100px;
+    &__image {
+        width: 350px;
+    }
+
+    &__title {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        height: 150px;
+        color: $accent-color;
+    }
+
+    &__intro {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__solicitud {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    &__bienvenida {
+        margin:  50px 0px;
+    }
+
+    &__bienvenidatexto {
+        font-size: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        line-height: 25px;
+    }
+
+    &__ingreso {
+        border-radius: 10px;
+        background-color: $accent-color;
+        width: 386px;
+        height: 96px;
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &--pasos{
+            width: 124px;
+            height: 80px;
+            margin: 0px;
+        }
+    }
+
+    &__ingresotexto {
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        padding: 20px;
+        line-height: 25px;
+    }
+
+    &__pasos {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 70px;
+    }
+
+    &__pasostexto {
+        margin-left: 20px;
+        font-size: 18px;
+        line-height: 25px;
+    }
+    
+}
+
+h1 {
+    font-size: 60px;
+}
